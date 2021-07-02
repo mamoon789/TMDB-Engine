@@ -7,6 +7,6 @@ import com.myisolutions.tmdbengine.R
 class MovieSearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_movie_search)
     }
 }
