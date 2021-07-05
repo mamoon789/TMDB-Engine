@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.navigation.Navigation
 import com.myisolutions.tmdbengine.R
+import dagger.hilt.android.AndroidEntryPoint
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
+@AndroidEntryPoint
 class MovieSearchFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
@@ -29,8 +31,8 @@ class MovieSearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_movie_search, container, false)
-        val tv = view.findViewById<TextView>(R.id.textview1)
-        tv.setOnClickListener { Navigation.findNavController(view).navigate(R.id.navigateToMovieDetailFragment) }
+//        val tv = view.findViewById<TextView>(R.id.textview1)
+//        tv.setOnClickListener { Navigation.findNavController(view).navigate(R.id.navigateToMovieDetailFragment) }
         return view
     }
 
