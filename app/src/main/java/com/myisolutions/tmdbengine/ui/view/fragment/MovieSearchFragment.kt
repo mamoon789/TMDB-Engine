@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavArgs
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.myisolutions.tmdbengine.R
 import com.myisolutions.tmdbengine.data.model.TmdbResponse
 import com.myisolutions.tmdbengine.databinding.FragmentMovieSearchBinding

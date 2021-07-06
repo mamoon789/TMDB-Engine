@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.myisolutions.tmdbengine.R
@@ -16,7 +17,7 @@ import java.lang.Exception
 @AndroidEntryPoint
 class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
     private val viewModel by viewModels<MovieDetailViewModel>()
-
+    private val args by navArgs<MovieDetailFragmentArgs>()
     private var _binding: FragmentMovieDetailBinding? = null
     private val binding get() = _binding!!
 
@@ -24,7 +25,7 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = FragmentMovieDetailBinding.bind(view)
-        viewModel.getMovieDetailAsync(550)
+        viewModel.getMovieDetailAsync(args.movie.id)
         try {
             viewModel.movie.observe(viewLifecycleOwner) {
                 binding.apply {

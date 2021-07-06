@@ -8,7 +8,7 @@ data class TmdbResponse(
 ) {
     @Parcelize
     data class Movie(
-        val id: String,
+        val id: Int,
         val backdrop_path: String,
         val original_title: String,
         val overview: String,

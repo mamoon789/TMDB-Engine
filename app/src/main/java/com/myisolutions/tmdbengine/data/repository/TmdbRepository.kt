@@ -1,10 +1,8 @@
 package com.myisolutions.tmdbengine.data.repository
 
-import androidx.lifecycle.LiveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.liveData
-import com.myisolutions.tmdbengine.data.TmdbPagingSource
 import com.myisolutions.tmdbengine.data.api.TmdbApi
 import com.myisolutions.tmdbengine.data.model.TmdbResponse
 import com.myisolutions.tmdbengine.util.Constants.API_KEY

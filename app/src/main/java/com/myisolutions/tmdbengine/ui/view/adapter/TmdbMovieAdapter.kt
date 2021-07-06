@@ -2,11 +2,13 @@ package com.myisolutions.tmdbengine.ui.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.myisolutions.tmdbengine.R
 import com.myisolutions.tmdbengine.data.model.TmdbResponse
 import com.myisolutions.tmdbengine.databinding.MovieItemBinding
 import com.myisolutions.tmdbengine.util.Constants.IMG_BASE_URL
@@ -17,7 +19,12 @@ class TmdbMovieAdapter(private val listener: OnItemClickListener) :
     PagingDataAdapter<TmdbResponse.Movie, TmdbMovieAdapter.MovieViewHolder>(MOVIE_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        val binding = MovieItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = DataBindingUtil.inflate<MovieItemBinding>(
+            LayoutInflater.from(parent.context),
+            R.layout.movie_item,
+            parent,
+            false
+        )
         return MovieViewHolder(binding)
     }
 
@@ -44,17 +51,13 @@ class TmdbMovieAdapter(private val listener: OnItemClickListener) :
         }
 
         fun bind(movie: TmdbResponse.Movie) {
-            Glide.with(itemView)
-                .load(IMG_BASE_URL + movie.backdrop_path)
-                .centerCrop()
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .into(binding.ivCover)
+            binding.url = movie.backdrop_path
+            binding.title = movie.original_title
 
-            binding.tvName.text = movie.original_title
-            val time = SimpleDateFormat("yyyy-MM-dd").parse(movie.release_date).time
             val calendar = Calendar.getInstance()
-            calendar.timeInMillis = time
-            binding.tvYear.text = "(" + calendar.get(Calendar.YEAR) + ")"
+            calendar.timeInMillis = SimpleDateFormat("yyyy-MM-dd").parse(movie.release_date).time
+
+            binding.year = "(" + calendar.get(Calendar.YEAR) + ")"
         }
     }
 

@@ -1,4 +1,4 @@
-package com.myisolutions.tmdbengine.data
+package com.myisolutions.tmdbengine.data.repository
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
