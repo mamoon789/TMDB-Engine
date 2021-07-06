@@ -7,6 +7,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface TmdbApi {
@@ -17,4 +18,10 @@ interface TmdbApi {
         @Query("query") query: String,
         @Query("page") page: Int
     ): TmdbResponse
+
+    @GET("movie/{id}")
+    suspend fun getMovieDetail(
+        @Path("id") id: Int,
+        @Query("api_key") key: String
+    ): TmdbResponse.Movie
 }

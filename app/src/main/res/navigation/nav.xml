@@ -22,5 +22,8 @@
         <action
             android:id="@+id/navigateToMovieSearchFragment"
             app:destination="@id/movieSearchFragment" />
+        <argument
+            android:name="movie"
+            app:argType="com.myisolutions.tmdbengine.data.model.TmdbResponse$Movie" />
     </fragment>
 </navigation>

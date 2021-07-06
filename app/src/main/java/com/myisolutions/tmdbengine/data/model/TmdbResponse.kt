@@ -13,7 +13,10 @@ data class TmdbResponse(
         val original_title: String,
         val overview: String,
         val poster_path: String,
+        val release_date: String,
         val vote_average: String,
-        val vote_count: String
+        val vote_count: String,
+        val revenue: Int,
+        val runtime: Int,
     ) : Parcelable
 }
