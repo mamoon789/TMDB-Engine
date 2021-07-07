@@ -5,31 +5,38 @@
 
     <data>
 
+        <import type="android.graphics.Typeface" />
+
         <variable
-            name="url"
+            name="movie"
+            type="com.myisolutions.tmdbengine.data.model.TmdbResponse.Movie" />
+
+        <variable
+            name="listener"
+            type="com.myisolutions.tmdbengine.ui.view.adapter.TmdbMovieAdapter.OnItemClickListener" />
+
+        <variable
+            name="currentYear"
             type="String" />
 
         <variable
-            name="title"
-            type="String" />
-
-        <variable
-            name="year"
+            name="movieYear"
             type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{()->listener.onItemClick(movie)}">
 
         <ImageView
             android:id="@+id/ivCover"
             android:layout_width="0dp"
             android:layout_height="300dp"
-            app:image="@{url}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:url="@{movie.poster_path}"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <View
@@ -46,28 +53,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="@{title}"
+            android:ellipsize="marquee"
+            android:maxEms="10"
+            android:singleLine="true"
+            android:text="@{movie.original_title}"
             android:textColor="@color/white"
             android:textSize="24sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/view"
-            app:layout_constraintVertical_bias="0.8" />
+            app:textStyle="@{movieYear.equals(currentYear) ? Typeface.BOLD: Typeface.NORMAL}" />
 
         <TextView
             android:id="@+id/tvYear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{year}"
-            android:textColor="@color/white"
+            android:text="@{movieYear}"
+            android:textColor="@{movieYear.equals(currentYear) ? @color/red: @color/white}"
             android:textSize="24sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/tvName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.06"
             app:layout_constraintStart_toEndOf="@+id/tvName"
-            app:layout_constraintTop_toTopOf="@+id/tvName" />
+            app:layout_constraintTop_toTopOf="@+id/tvName"
+            app:textStyle="@{movieYear.equals(currentYear) ? Typeface.BOLD: Typeface.NORMAL}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TMDBEngine">
-        <activity android:name="com.myisolutions.tmdbengine.ui.view.activity.MovieSearchActivity">
+        <activity android:name="com.myisolutions.tmdbengine.ui.view.activity.MovieSearchActivity"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

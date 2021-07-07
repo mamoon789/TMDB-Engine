@@ -20,10 +20,6 @@ class MovieSearchViewModel @Inject constructor(private val repository: TmdbRepos
         currentQuery.value = query
     }
 
-    fun getMovieDetail(id: Int){
-
-    }
-
     companion object{
         private const val DEFAULT_QUERY = "fight"
     }

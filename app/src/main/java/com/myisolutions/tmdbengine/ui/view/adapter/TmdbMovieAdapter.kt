@@ -39,25 +39,20 @@ class TmdbMovieAdapter(private val listener: OnItemClickListener) :
     inner class MovieViewHolder(private val binding: MovieItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        init {
-            binding.root.setOnClickListener {
-                val position = bindingAdapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    val item = getItem(position)
-                    if (item != null)
-                        listener.onItemClick(item)
-                }
-            }
-        }
-
         fun bind(movie: TmdbResponse.Movie) {
-            binding.url = movie.backdrop_path
-            binding.title = movie.original_title
+            binding.apply {
+                this.movie = movie
+                this.listener = this@TmdbMovieAdapter.listener
 
-            val calendar = Calendar.getInstance()
-            calendar.timeInMillis = SimpleDateFormat("yyyy-MM-dd").parse(movie.release_date).time
+                val calendar = Calendar.getInstance()
+                this.currentYear = "(" + calendar.get(Calendar.YEAR) + ")"
 
-            binding.year = "(" + calendar.get(Calendar.YEAR) + ")"
+                if(!movie.release_date.isNullOrEmpty())
+                calendar.timeInMillis = SimpleDateFormat("yyyy-MM-dd").parse(movie.release_date).time
+                this.movieYear = "(" + calendar.get(Calendar.YEAR) + ")"
+
+                executePendingBindings();
+            }
         }
     }
 
